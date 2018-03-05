@@ -152,7 +152,9 @@
                 <div class="comment mb-2 row">
                     <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
                         <a href="">
-                           <!-- profilowe -->
+                            {% thumbnail comment.name.profile.photo "150x150" as im %}  
+                            <img class="mx-auto rounded-circle" width="50" height="50" src="{{ im.url }}" alt="{{ comment.name }}">
+                            {% endthumbnail %}
                         </a>
                     </div>
                     <div class="comment-content col-md-11 col-sm-10">
@@ -170,7 +172,27 @@
                 {% endfor %}
             <div class="container">
                 <div class="row pt-2">
-                    <div class="col-12">  
+                    <div class="col-12">
+                       
+                        <form action="." method="post" enctype="multipart/form-data" class="p-5" style="margin: auto;">
+                            {% load widget_tweaks %}
+                            {% csrf_token %}
+          
+                            {% for hidden_field in comment_form.hidden_fields %}
+                              {{ hidden_field }}
+                            {% endfor %}
+                          
+                            {% for field in comment_form.visible_fields %}
+                              <div class="form-group">
+                                {{ field.label_tag }}
+                                {% render_field field class="form-control" %}
+                                {% if field.help_text %}
+                                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                              </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary">Dodaj kommentarz</button>
+                          </form>
                     </div>
                 </div>
             </div>
