@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Edycja profilu{% endblock %}
+
+{% block content %}
+<div class="container">
+              <form action="." method="post" enctype="multipart/form-data" class="w-75 p-5" style="margin: auto;">
+                  <h1 class="mb-4">Edycja profilu</h1>  
+                  <p>Ustawienia konta możesz zmienić za pomocą poniższego formularza.</p>
+                  {% load widget_tweaks %}
+                  {% csrf_token %}
+
+                  {% for hidden_field in user_form.hidden_fields %}
+                    {{ hidden_field }}
+                  {% endfor %}
+
+                  {% for hidden_field in profile_form.hidden_fields %}
+                    {{ hidden_field }}
+                  {% endfor %}
+                
+                  {% for field in user_form.visible_fields %}
+                    <div class="form-group">
+                      {{ field.label_tag }}
+                      {% render_field field class="form-control" %}
+                      {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                  
+                  {% for field in profile_form.visible_fields %}
+                    <div class="form-group">
+                      {{ field.label_tag }}
+                      {% render_field field class="form-control" %}
+                      {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                
+                  <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                </form>
+</div>
+{% endblock %}

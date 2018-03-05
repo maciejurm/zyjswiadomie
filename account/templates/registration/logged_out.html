@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Wylogowanie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+            <div class="section-title">
+                    <h2><span>Wylogowanie</span></h2>
+                    <p>Zostałeś pomyślnie wylogowany. Możesz <a href="{% url "login" %}">zalogować się ponownie.</a></p>
+            </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

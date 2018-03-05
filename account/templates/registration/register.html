@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Rejestracja{% endblock %}
+
+{% block content %}
+<div class="container-fluid h-100">
+        <div class="row h-100">
+          <div class="col col-sm-12 col-md-6 col-xl-4">
+          
+              <form action="." method="post" class="w-75 p-5" style="margin: auto;">
+                  <h1 class="mb-4">Rejestracja</h1>  
+                  <p>Aby się zarejestrować wypełnij poniższe pola. Możesz również zalogować się przez zewnętrzny portal, wystarczy, że klikniesz jego ikonę i zaakceptujesz rejestrację.</p>
+                  {% load widget_tweaks %}
+                  {% csrf_token %}
+
+                  {% for hidden_field in user_form.hidden_fields %}
+                    {{ hidden_field }}
+                  {% endfor %}
+                
+                  {% for field in user_form.visible_fields %}
+                    <div class="form-group">
+                      {{ field.label_tag }}
+                      {% render_field field class="form-control" %}
+                      {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                
+                  <button type="submit" class="btn btn-primary btn-block">Utwórz konto</button>
+                </form>
+          </div>
+          <div class="col col-md-6 col-xl-8 tlo">
+          
+          </div>
+        </div>    
+    </div>
+{% endblock %}

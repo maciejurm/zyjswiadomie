@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load activity_tags %}
+
+{% block title %}Profil {{ user.username }}{% endblock %}
+{% block content %}
+
+<!-- Begin Top Author Page
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="mainheading">
+				<div class="row post-top-meta authorpage">
+					<div class="col-md-10 col-xs-12">
+						<h1>{{ user.username }}</h1>
+						<span class="author-description">Twórca portalu <a target="_blank" href="#">Żyj świadomie</a>  I professionally develop premium themes, templates & scripts since the Apocalypse (2012). You can reach me out on the social links below.</span>
+						<div class="sociallinks"><a  target="_blank" href="https://www.facebook.com/wowthemesnet/"><i class="fa fa-facebook"></i></a> <span class="dot"></span> <a target="_blank" href="https://plus.google.com/s/wowthemesnet/top"><i class="fa fa-google-plus"></i></a></div>
+						
+
+						<form action="." method="post">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<input type="hidden" id="id_target" name="target" value="{{target.id}}">
+							<input type="hidden" id="id_user" name="user" value="{{user.id}}">
+							<button type="submit" class="btn btn-primary btn-sm" value="Create" />
+							
+							</button> 
+						</form>
+						
+
+						</div>
+					<div class="col-md-2 col-xs-12">
+						<img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Top Author Meta
+================================================== -->
+<div class="graybg authorpage">
+		<div class="container">
+			<div class="listrecent listrelated">
+	
+					<!-- begin post -->
+					<div class="authorpostbox">
+							{% include "feed.html" %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}

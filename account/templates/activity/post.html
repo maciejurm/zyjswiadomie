@@ -1,0 +1,28 @@
+<!-- Begin Author Posts
+================================================== -->
+
+					<div class="card mb-2">
+						<div class="card-header">
+							{{ activity.actor.username }} dodał post "{{ activity.object.title }}"
+						</div>
+						<a href="author.html">
+						<img class="img-fluid img-thumb" src="assets/img/demopic/8.jpg" alt="">
+						</a>
+						<div class="card-block">
+							<h2 class="card-title"><a href="post.html">{{ activity.object.title }}</a></h2>
+              <h4 class="card-text">{{ activity.object.body }}</h4>
+            	<div class="metafooter">
+								<div class="wrapfooter">
+									<span class="meta-footer-thumb">
+									<a href="author.html"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
+									</span>
+									<span class="author-meta">
+									<span class="post-name"><a href="author.html">{{ activity.actor.username }}</a></span><br/>
+									<span class="post-date">{{ activity.create_at|timesince }}</span><span class="dot"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+<!-- end post -->
