@@ -74,7 +74,7 @@
 						Witaj, {{ request.user.first_name }}
 					</a>
 					<div class="dropdown-menu" aria-labelledby="userMenu">
-						<a class="dropdown-item" href="{% url 'tablica_aktywnosci' %}">Aktywności</a>
+						<a class="dropdown-item" href="">Aktywności</a>
 						<a class="dropdown-item" href="#">Mój profil</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="{% url 'logout' %}">Wyloguj</a>
@@ -125,7 +125,26 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src=" http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js "></script>
+<script>
+  var csrftoken = $.cookie('csrftoken');
+  function csrfSafeMethod(method) {
+	// Te metody HTTP nie wymagają zabezpieczenia przed atakami typu CSRF.
+	return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+  $.ajaxSetup({
+	beforeSend: function(xhr, settings) {
+	  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+		xhr.setRequestHeader("X-CSRFToken", csrftoken);
+	  }
+	}
+  });
+  $(document).ready(function(){
+	{% block domready %}
+	{% endblock %}
+	 });
+</script>
 <script src="{% static "static/js/jquery.min.js"  %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="{% static "static/js/bootstrap.min.js" %}"></script>

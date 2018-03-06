@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.conf.urls import include, url, re_path
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from . import views
@@ -19,9 +19,8 @@ urlpatterns = [
     path('rejestracja/', views.register, name='registration'),
     path('edycja-profilu/', views.edit, name='edycja'),
     # Obserwacja użytkowników i profil użytkownika
-    path('follow/', login_required(views.follow), name='follow'),
-    path('unfollow/<target_id>/', login_required(views.unfollow), name='unfollow'),
-    path('profile/<username>/', views.user, name='user_profile'),
-    path('timeline/', login_required(views.timeline), name = 'tablica_aktywnosci'),
-    path('uzytkownicy/', views.discover, name='uzytkownicy')
+    path('users/', views.user_list, name='user_list'),
+    path('users/<username>/',
+        views.user_detail,
+        name='user_detail'),
 ]

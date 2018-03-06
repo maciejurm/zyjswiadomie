@@ -1,14 +1,7 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Follow, Profile
+from .models import Profile
 from django.contrib.auth.models import User
-
-
-class FollowForm(ModelForm):
-
-    class Meta:
-        exclude = set()
-        model = Follow
 
 class LoginForm(forms.Form):
     username = forms.CharField()

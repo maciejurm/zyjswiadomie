@@ -15,20 +15,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return 'Profil użytkownika {}.'.format(self.user.username)
-
-class Follow(models.Model):
-    user = models.ForeignKey('auth.User', related_name = 'follow', on_delete = models.CASCADE)
-    target = models.ForeignKey('auth.User', related_name ='followers', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add = True)
-
-    class Meta:
-        unique_together = ('user', 'target')
-
-def unfollow_feed(sender, instance, **kwargs):
-    feed_manager.unfollow_user(instance.user_id, instance.target_id)
-
-def follow_feed(sender, instance, **kwargs):
-    feed_manager.follow_user(instance.user_id, instance.target_id)
-
-signals.post_delete.connect(unfollow_feed, sender=Follow)
-signals.post_save.connect(follow_feed, sender=Follow)
