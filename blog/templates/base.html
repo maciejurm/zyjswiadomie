@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load static %}
 {% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +21,7 @@
 <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="{% static "css/mediumish.css" %}" rel="stylesheet">
+
 <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
 <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 </head>
@@ -27,7 +29,7 @@
 
 <!-- Begin Nav
 ================================================== -->
-<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+<nav class="navbar navbar-toggleable-md navbar-light bg-primary fixed-top mediumnavigation">
 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -61,26 +63,28 @@
 		<ul class="navbar-nav mt-2 mt-md-0">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">	
-						{% thumbnail user.profile.photo "50" as im %}
-						<img class="rounded-circle" src="{{ im.url }}" alt="{{ request.user.first_name }}">
+						{% load thumbnail %}
+						{% thumbnail user.profile.photo "30" as im %}
+						<img class="rounded-circle" width="30" height="30" src="{{ im.url }}" alt="{{ request.user.first_name }}">
 						Witaj, {{ request.user.first_name }}
 						{% endthumbnail %}
 					</a>
 					<div class="dropdown-menu" aria-labelledby="userMenu">
-						<a class="dropdown-item" href="{% url 'tablica_aktywnosci' %}">Tablica aktywności</a>
+						<a class="dropdown-item" href="">Panel główny</a>
 						<a class="dropdown-item" href="#">Powiadomienia</a>
-						<a class="dropdown-item" href="#">Ustawienia</a>
-						<a class="dropdown-item" href="#">Zmiana hasła</a>
+						<a class="dropdown-item" href="{% url 'edycja' %}">Ustawienia</a>
+						<a class="dropdown-item" href="{% url 'password_change' %}">Zmiana hasła</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Wyloguj</a>
+						<a class="dropdown-item" href="{% url 'logout' %}">Wyloguj</a>
 						{% else %}
 					<ul class="navbar-nav">
-						<a class="nav-link" href="#"></a>
+						<a class="nav-link" href="{% url 'login' %}">Zaloguj/Zarejestruj</a>
 					</ul>
 					</div>
 				</li>
 		</ul>
 	    {% endif %}
+
 	</div>
 </div>
 </nav>

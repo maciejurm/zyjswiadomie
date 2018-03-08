@@ -1,10 +1,12 @@
 from django.contrib import admin
 from .models import Post, Comment
+from mediumeditor.admin import MediumEditorAdmin
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(MediumEditorAdmin, admin.ModelAdmin):
     list_display = ['title', 'active', 'author', 'image']
     ordering = ['-created_at']
     search_fields = ['title', 'body', 'author']
+    mediumeditor_fields = ('body', )
 
 admin.site.register(Post, PostAdmin)
 

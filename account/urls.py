@@ -18,9 +18,9 @@ urlpatterns = [
     path('password-reset/complete/', auth_view.password_reset_complete, name='password_reset_confirm'),
     path('rejestracja/', views.register, name='registration'),
     path('edycja-profilu/', views.edit, name='edycja'),
-    # Obserwacja użytkowników i profil użytkownika
+    # Profil użytkownika
     path('users/', views.user_list, name='user_list'),
-    path('users/<username>/',
+    path('profil/<username>/',
         views.user_detail,
         name='user_detail'),
 ]

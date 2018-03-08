@@ -49,12 +49,6 @@
 			<li class="nav-item active">
 			<a class="nav-link" href="{% url 'blog:post_list' %}">Artykuły</a>
 			</li>
-			<li class="nav-item">
-			<a class="nav-link" href="post.html">Post</a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" href="author.html">Author</a>
-			</li>
 		</ul>
 		<!-- End Menu -->
 		<!-- Begin Search -->
@@ -66,28 +60,29 @@
 		{% if request.user.is_authenticated %}
 		<ul class="navbar-nav mt-2 mt-md-0">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">	
 						{% load thumbnail %}
-						{% thumbnail user.profile.photo "150" as im %}
-						<img class="author-thumb" src="{{ im.url }}" alt="{{ request.user.username }}"></a>
-						{% endthumbnail %}	
+						{% thumbnail user.profile.photo "30" as im %}
+						<img class="rounded-circle" width="30" height="30" src="{{ im.url }}" alt="{{ request.user.first_name }}">
 						Witaj, {{ request.user.first_name }}
+						{% endthumbnail %}
 					</a>
 					<div class="dropdown-menu" aria-labelledby="userMenu">
-						<a class="dropdown-item" href="">Aktywności</a>
-						<a class="dropdown-item" href="#">Mój profil</a>
+						<a class="dropdown-item" href="">Panel główny</a>
+						<a class="dropdown-item" href="#">Powiadomienia</a>
+						<a class="dropdown-item" href="{% url 'edycja' %}">Ustawienia</a>
+						<a class="dropdown-item" href="{% url 'password_change' %}">Zmiana hasła</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="{% url 'logout' %}">Wyloguj</a>
 						{% else %}
 					<ul class="navbar-nav">
-						<a class="nav-link" href="{% url 'login' %}"><button type="button" class="btn btn-sm btn-outline-success">Logowanie</button></a>
-						<a class="nav-link" href="{% url 'registration' %}"><button type="button" class="btn btn-sm btn-outline-primary">Rejestracja</button></a>
+						<a class="nav-link" href="{% url 'login' %}">Zaloguj/Zarejestruj</a>
 					</ul>
 					</div>
 				</li>
 		</ul>
 	    {% endif %}
-	    
+
 	</div>
 </div>
 </nav>
@@ -124,27 +119,6 @@
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src=" http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js "></script>
-<script>
-  var csrftoken = $.cookie('csrftoken');
-  function csrfSafeMethod(method) {
-	// Te metody HTTP nie wymagają zabezpieczenia przed atakami typu CSRF.
-	return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-  }
-  $.ajaxSetup({
-	beforeSend: function(xhr, settings) {
-	  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-		xhr.setRequestHeader("X-CSRFToken", csrftoken);
-	  }
-	}
-  });
-  $(document).ready(function(){
-	{% block domready %}
-	{% endblock %}
-	 });
-</script>
 <script src="{% static "static/js/jquery.min.js"  %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="{% static "static/js/bootstrap.min.js" %}"></script>

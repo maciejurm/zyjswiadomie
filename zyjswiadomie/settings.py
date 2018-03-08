@@ -40,11 +40,13 @@ INSTALLED_APPS = [
     'stream_django',
     'account',
     'django.contrib.admin',
+    'mediumeditor',
     'blog',
     # Formularze
     'widget_tweaks',
     # Obrazy - miniatury
     'sorl.thumbnail',
+    'meta',
 ]
 
 STREAM_API_KEY = 'jv9mc55xxq23'
@@ -78,6 +80,12 @@ TEMPLATES = [
         },
     },
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
 
 WSGI_APPLICATION = 'zyjswiadomie.wsgi.application'
 
@@ -114,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Przekierowanie
 from django.urls import reverse_lazy
 
-LOGIN_REDIRECT_URL = reverse_lazy('tablica_aktywnosci')
+LOGIN_REDIRECT_URL = reverse_lazy('blog:post_list')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
 
@@ -131,11 +139,40 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIUM_EDITOR_THEME = 'flat'
+MEDIUM_EDITOR_OPTIONS = {
+    'toolbar': {
+        'static': True,
+        'buttons': [
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            'subscript',
+            'superscript',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'h6',
+        ]
+    },
+    'paste': {
+        'forcePlainText': True,
+        'cleanPastedHTML': False,
+        'cleanReplacements': [],
+        'cleanAttrs': ['class', 'style', 'dir'],
+        'cleanTags': ['meta']
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 

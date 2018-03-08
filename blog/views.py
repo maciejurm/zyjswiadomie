@@ -2,11 +2,22 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post
 from stream_django.enrich import Enrich
 from stream_django.feed_manager import feed_manager
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
+from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 def post_list(request):
     posts = Post.objects.all()
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(num_pages)
     return render(request, 
                  'blog/list.html',
                  {'posts': posts})
@@ -28,3 +39,18 @@ def tresc_postu(request, slug):
                  {'post': post,
                  'comments': comments,
                  'comment_form': comment_form})
+
+def nowy_post(request):
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            form.save_m2m()
+            messages.success(request, 'Post został dodany! Teraz czeka na akceptację przez moderatora. :)')
+        else:
+            messages.error(request, 'Błąd. Sprawdź czy zostały poprawnie wypełnione wszystkie pola.')
+    else:
+        form = PostForm()
+    return render(request, 'blog/nowy.html', {'form': form})
