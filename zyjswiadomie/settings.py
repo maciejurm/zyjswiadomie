@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     # Obrazy - miniatury
     'sorl.thumbnail',
-    'meta',
 ]
 
 STREAM_API_KEY = 'jv9mc55xxq23'
