@@ -25,7 +25,9 @@ SECRET_KEY = 'o3v_x7ci7omiai-^a8p59k1=ruh8!+5@d8adt@b@w24r5#pl)!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ADMINS = ('Maciej Urmański', 'maciej@zyjswiadomie.eu')
+
+ALLOWED_HOSTS = ['zyjswiadomie.eu', 'www.zyjswiadomie.eu']
 
 
 # Application definition
