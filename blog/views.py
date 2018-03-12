@@ -5,6 +5,7 @@ from stream_django.feed_manager import feed_manager
 from .forms import CommentForm, PostForm
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from meta.models import ModelMeta
 
 
 
@@ -24,6 +25,7 @@ def post_list(request):
 
 def tresc_postu(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    meta = post.as_meta()
     comments = post.comments.filter(active = True)
     comment_form = CommentForm(data = request.POST)
     if request.method == 'POST':

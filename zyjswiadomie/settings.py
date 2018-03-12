@@ -25,9 +25,7 @@ SECRET_KEY = 'o3v_x7ci7omiai-^a8p59k1=ruh8!+5@d8adt@b@w24r5#pl)!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ADMINS = ('Maciej Urmański', 'maciej@zyjswiadomie.eu')
-
-ALLOWED_HOSTS = ['zyjswiadomie.eu', 'www.zyjswiadomie.eu']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,11 +46,16 @@ INSTALLED_APPS = [
     'widget_tweaks',
     # Obrazy - miniatury
     'sorl.thumbnail',
+    'meta',
 ]
 
 STREAM_API_KEY = 'jv9mc55xxq23'
 STREAM_API_SECRET = '24nvphw6942jh76jpr5t8ua7fhzpzut75z6x3qfj8rzbrwfw6uhq954a5cp8durz'
 
+# Django Meta
+META_USE_OG_PROPERTIES = True
+META_SITE_PROTOCOL = 'http'
+META_SITE_DOMAIN = 'zyjswiadomie.pythonanywhere.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

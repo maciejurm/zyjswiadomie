@@ -1,9 +1,11 @@
 {% load staticfiles %}
 {% load static %}
 {% load thumbnail %}
+{% load meta %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head {% meta_namespaces %}>
+{% include 'meta/meta.html' %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -35,7 +37,7 @@
 </button>
 <div class="container">
 	<!-- Begin Logo -->
-	<a class="navbar-brand" href="index.html">
+	<a class="navbar-brand" href="/">
 	<img src="{% static "img/logo.png" alt="logo" %}">
 	</a>
 	<!-- End Logo -->
