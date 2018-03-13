@@ -50,9 +50,9 @@
                    <div class="row post-top-meta">
                         <div class="col-md-2">
                             <a href="author.html">
-                                    {% thumbnail user.profile.photo "150x150" as im %}
-                                    <img class="author-thumb" src="{{ im.url }}" alt="{{ post.author }}"></a>
-                                    {% endthumbnail %}
+                                {% thumbnail post.author.profile.photo "150x150" as im %}
+                                <img class="author-thumb" src="{{ im.url }}" alt="{{ post.author }}"></a>
+                                {% endthumbnail %}
                         </div>
                         <div class="col-md-10">
                             <a class="link-dark" href="author.html"> {{ post.author }}</a><a href="#" class="btn follow">Follow</a>
@@ -174,7 +174,7 @@
             <div class="container">
                 <div class="row pt-2">
                     <div class="col-12">
-                       
+                    {% if request.user.is_authenticated %}
                         <form action="." method="post" enctype="multipart/form-data" class="p-5" style="margin: auto;">
                             {% load widget_tweaks %}
                             {% csrf_token %}
@@ -194,6 +194,9 @@
                             {% endfor %}
                             <button type="submit" class="btn btn-primary">Dodaj kommentarz</button>
                           </form>
+                        {% else %}
+                    Aby dodać komentarz musisz się <a href="{% url 'login' %}">zalogować</a> lub <a href="{% url 'registration' %}">zarejestrować.</a>
+                    {% endif %}
                     </div>
                 </div>
             </div>

@@ -31,7 +31,7 @@ class Post(ModelMeta, models.Model):
                       args = [
                           self.slug
                       ])
-
+    
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     name = models.ForeignKey(User, on_delete=models.CASCADE)
