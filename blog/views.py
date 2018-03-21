@@ -1,7 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post
-from stream_django.enrich import Enrich
-from stream_django.feed_manager import feed_manager
 from .forms import CommentForm, PostForm
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger

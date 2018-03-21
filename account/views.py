@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import Profile 
 from blog.models import Post
-from stream_django.feed_manager import feed_manager
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
