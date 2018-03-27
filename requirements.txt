@@ -3,7 +3,6 @@ chardet==3.0.4
 Django==2.0.2
 django-appconf==1.0.2
 django-js-asset==1.0.0
-django-mediumeditor==1.0.0
 django-meta==1.4.1
 django-widget-tweaks==1.4.1
 idna==2.6

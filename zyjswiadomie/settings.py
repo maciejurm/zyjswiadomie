@@ -38,13 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'django.contrib.admin',
-    'mediumeditor',
     'blog',
     # Formularze
     'widget_tweaks',
     # Obrazy - miniatury
     'sorl.thumbnail',
-    'meta',
+    'django_summernote',
 ]
 
 STREAM_API_KEY = 'jv9mc55xxq23'

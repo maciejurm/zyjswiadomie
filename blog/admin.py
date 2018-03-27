@@ -1,12 +1,12 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Post, Comment
-from mediumeditor.admin import MediumEditorAdmin
 
-class PostAdmin(MediumEditorAdmin, admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin,admin.ModelAdmin):
     list_display = ['title', 'active', 'author', 'image']
     ordering = ['-created_at']
     search_fields = ['title', 'body', 'author']
-    mediumeditor_fields = ('body', )
+    summernote_fields = ('body',)
 
 admin.site.register(Post, PostAdmin)
 
