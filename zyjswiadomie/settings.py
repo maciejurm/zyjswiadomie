@@ -46,13 +46,7 @@ INSTALLED_APPS = [
     'django_summernote',
 ]
 
-STREAM_API_KEY = 'jv9mc55xxq23'
-STREAM_API_SECRET = '24nvphw6942jh76jpr5t8ua7fhzpzut75z6x3qfj8rzbrwfw6uhq954a5cp8durz'
 
-# Django Meta
-META_USE_OG_PROPERTIES = True
-META_SITE_PROTOCOL = 'http'
-META_SITE_DOMAIN = 'zyjswiadomie.pythonanywhere.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,11 +76,6 @@ TEMPLATES = [
     },
 ]
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
-}
 
 WSGI_APPLICATION = 'zyjswiadomie.wsgi.application'
 
@@ -139,34 +128,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-MEDIUM_EDITOR_THEME = 'flat'
-MEDIUM_EDITOR_OPTIONS = {
-    'toolbar': {
-        'static': True,
-        'buttons': [
-            'bold',
-            'italic',
-            'underline',
-            'strikethrough',
-            'subscript',
-            'superscript',
-            'h1',
-            'h2',
-            'h3',
-            'h4',
-            'h5',
-            'h6',
-        ]
-    },
-    'paste': {
-        'forcePlainText': True,
-        'cleanPastedHTML': False,
-        'cleanReplacements': [],
-        'cleanAttrs': ['class', 'style', 'dir'],
-        'cleanTags': ['meta']
-    }
-}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

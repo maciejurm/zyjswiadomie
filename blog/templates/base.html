@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+{% block og_tags %}{% endblock %}
 <link rel="icon" href="assets/img/favicon.ico">
 <title>{% block title %} {% endblock %}</title>
 <!-- Bootstrap core CSS -->
@@ -23,9 +24,6 @@
 <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="{% static "css/mediumish.css" %}" rel="stylesheet">
-
-<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 </head>
 <body>
 
