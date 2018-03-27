@@ -7,6 +7,7 @@ class PostAdmin(SummernoteModelAdmin,admin.ModelAdmin):
     ordering = ['-created_at']
     search_fields = ['title', 'body', 'author']
     summernote_fields = ('body',)
+    prepopulated_fields = {'slug': ('title',)}
 
 admin.site.register(Post, PostAdmin)
 
