@@ -21,11 +21,12 @@ from django.contrib.flatpages import views
 
 app_name = 'blog'
 urlpatterns = [
-    path('kontakt/', views.flatpage, {'url': '/kontakt/'}, name='kontakt'),
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
     path('konto/', include('account.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('wydarzenia/', include('events.urls', namespace='event')),
+    path('kontakt/', views.flatpage, {'url': '/kontakt/'}, name='kontakt'),
 ]
 
 if settings.DEBUG:
