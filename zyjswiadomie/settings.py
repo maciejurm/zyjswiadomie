@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Flat pages
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'account',
     'django.contrib.admin',
     'blog',
@@ -44,7 +47,10 @@ INSTALLED_APPS = [
     # Obrazy - miniatury
     'sorl.thumbnail',
     'django_summernote',
+    'events',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'zyjswiadomie.urls'

@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.flatpages import views
 
 app_name = 'blog'
 urlpatterns = [
+    path('kontakt/', views.flatpage, {'url': '/kontakt/'}, name='kontakt'),
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
     path('konto/', include('account.urls')),

@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 250, verbose_name='Tytuł')
     slug = models.SlugField(unique = True)
     body = models.TextField(verbose_name='Treść', help_text='Aby inaczej sformatować tekst, zaznacz fragment tekstu, który chcesz zmienić i kliknij wybraną ikonę.')
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
     active = models.BooleanField(default = False)
     image = models.ImageField(upload_to = 'post_image', blank = True, verbose_name='Miniatura postu', help_text='Aby nie łamać praw autorskich, warto skorzystać z darmowych zdjęć na stocksnap.io, unsplash.com lub pexels.com. Warto jednak pamiętać o rozdzielczości')
