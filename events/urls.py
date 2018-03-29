@@ -7,5 +7,6 @@ from django.urls import path
 app_name = 'event'
 urlpatterns = [
     path('wszystkie/', views.event_list, name='event_list'),
+    path('wszystkie/dodaj/', views.nowe_wydarzenie, name='dodaj'),
     path('<slug>/', views.event_detail, name='event_detail'),
 ]

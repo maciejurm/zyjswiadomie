@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Event
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .forms import EventForm
+from django.contrib import messages
 
 def event_list(request):
     events = Event.objects.filter(active=True)
@@ -21,3 +23,18 @@ def event_detail(request, slug):
     return render(request, 
                  'detail.html',
                  {'event': event})
+
+def nowe_wydarzenie(request):
+    if request.method == "POST":
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.author = request.user
+            event.save()
+            messages.success(request, 'Wydarzenie zostało dodane poprawnie. :) Pojawi się jak tylko zostanie zaakceptowane przez moderatora.')
+        else:
+            messages.error(request, 'Błąd. Sprawdź czy zostały wypełnione poprawnie wszystkie pola.')
+    else:
+        form = EventForm()
+    return render(request, 'dodaj.html',
+                 {'form': form})
