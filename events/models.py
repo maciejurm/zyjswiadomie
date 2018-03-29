@@ -6,6 +6,8 @@ from django.urls import reverse
 class Event(models.Model):
     title = models.CharField(max_length = 250, verbose_name = 'Tytuł')
     image = models.ImageField(upload_to = 'events', verbose_name='Miniatura wydarzenia')
+    button = models.CharField(max_length = 100, default = 'Więcej informacji', verbose_name = 'Przycisk', help_text = 'Możesz zmienić nazwę przycisku wpisując na przykład: "Bilety"')
+    button_url = models.URLField(default = 'przykladowylink.pl', verbose_name='Adres url przycisku', help_text = 'Przekierowanie przycisku na podany adres, tutaj wpisz adres na który chcesz skierować ludzi zainteresowanych wydarzeniem.')
     body = models.TextField(verbose_name='Treść')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField()
