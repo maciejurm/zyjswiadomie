@@ -6,7 +6,10 @@
 ================================================== -->
 <div class="container">
         <div class="mainheading">
-            <h1 class="sitetitle">Wydarzenia</h1><a href="{% url 'event:event_add' %}"><button type="button" class="btn btn-sm btn-outline-success">Dodaj wydarzenie</button></a>
+            <h1 class="sitetitle">Wydarzenia</h1><a href="{% url 'event:event_add' %}">
+            {% if request.user.is_authenticated %}    
+            <button type="button" class="btn btn-sm btn-outline-success">Dodaj wydarzenie</button></a>
+            {% endif %}
         </div>
     <!-- End Site Title
     ================================================== -->

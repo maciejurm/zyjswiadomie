@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.flatpages import views
 
 app_name = 'blog'
 urlpatterns = [
@@ -26,7 +25,6 @@ urlpatterns = [
     path('konto/', include('account.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('wydarzenia/', include('events.urls', namespace='event')),
-    path('kontakt/', views.flatpage, {'url': '/kontakt/'}, name='kontakt'),
 ]
 
 if settings.DEBUG:
