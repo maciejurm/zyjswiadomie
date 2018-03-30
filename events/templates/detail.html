@@ -106,9 +106,31 @@
     
     <!-- Begin Related
     ================================================== -->
-    <div class="graybg">
-    
+    <div class="container">
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                <div class="jumbotron bg-primary text-white">
+                    <h3>Zostań patronem</h3>
+                    <p class="lead">Lubisz projekt Żyj świadomie? Możesz pomóc go rozwinąć i stworzyć razem coś fajnego! :)</p>
+                    <p class="lead">
+                    <a class="btn btn-primary btn-sm" href="#" role="button">Więcej informacji</a>
+                    </p>
+                </div>
+            </div>
+            <div class="p-2">
+                    <div class="jumbotron bg-success text-white">
+                        <h3>Blog</h3>
+                        <p class="lead">Szukasz ciekawych treści? Wejdź na bloga Żyj świadomie. :)</p>
+                        <p class="lead">
+                        <a class="btn btn-primary btn-sm" href="{% url 'blog:post_list' %}" role="button">Blog</a>
+                        </p>
+                    </div>
+            </div>
+        </div>
     </div>
+<div class="graybg">
+
+</div>
     <!-- End Related Posts
     ================================================== -->
 {% endblock %}

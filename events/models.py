@@ -13,7 +13,7 @@ class Event(models.Model):
     slug = models.SlugField()
     day = models.DateField('Dzień wydarzenia', help_text = 'Dzień wydarzenia')
     start_time = models.TimeField('Godzina rozpoczęcia', help_text = 'Godzina rozpoczęcia')
-    end_time = models.TimeField('Zakończenie')
+    end_time = models.TimeField('Godzina zakończenia')
     active = models.BooleanField(default = False)
 
     class Meta:
