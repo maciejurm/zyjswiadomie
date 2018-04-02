@@ -8,8 +8,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
 
-
-
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)

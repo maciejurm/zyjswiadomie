@@ -1,17 +1,16 @@
 {% load staticfiles %}
+{% load static %}
+{% load thumbnail %}
+{% load meta %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head {% meta_namespaces %}>
+{% include 'meta/meta.html' %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-{% block og_tags %}
-    <meta property="og:type"   content="article" /> 
-    <meta property="og:title"  content="{{ post.title }}" /> 
-    <meta property="og:image"  content="{{ post.image.url }}" /> 
-    <meta property=”og:description” content="{{ post.body|truncatewords:30 }}" />
-{% endblock %}
+{% block og_tags %}{% endblock %}
 <link rel="icon" href="assets/img/favicon.ico">
 <title>{% block title %} {% endblock %}</title>
 <!-- Bootstrap core CSS -->
@@ -25,21 +24,12 @@
 <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="{% static "css/mediumish.css" %}" rel="stylesheet">
-<style>
-	html,body {
-	  height: 100%;
-	}
-	.tlo{
-		background-image: url("{% static 'img/logowanie.jpg' %}");
-		background-size: cover;
-	}
-</style>
 </head>
 <body>
 
 <!-- Begin Nav
 ================================================== -->
-<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+<nav class="navbar navbar-toggleable-md navbar-light bg-primary fixed-top mediumnavigation">
 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -53,16 +43,13 @@
 		<!-- Begin Menu -->
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item active">
-			<a class="nav-link" href="{% url 'blog:post_list' %}">Artykuły</a>
+			<a class="nav-link" href="{% url 'blog' %}">Artykuły</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'event:event_list' %}">Wydarzenia</a>
+			<a class="nav-link" href="post.html">Blogi</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'patron' %}">Zostań patronem</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'kontakt' %}">Kontakt</a>
+			<a class="nav-link" href="author.html">Użytkownicy</a>
 			</li>
 		</ul>
 		<!-- End Menu -->
@@ -84,7 +71,6 @@
 					</a>
 					<div class="dropdown-menu" aria-labelledby="userMenu">
 						<a class="dropdown-item" href="{% url 'blog:nowy' %}">Dodaj post</a>
-						<a class="dropdown-item" href="{% url 'event:event_add' %}">Dodaj wydarzenie</a>
 						<a class="dropdown-item" href="{% url 'edycja' %}">Ustawienia</a>
 						<a class="dropdown-item" href="{% url 'password_change' %}">Zmiana hasła</a>
 						<div class="dropdown-divider"></div>
@@ -101,24 +87,32 @@
 	</div>
 </div>
 </nav>
+<!-- End Nav
+================================================== -->
 <div class="container">
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{message.tags}}" role="alert">
-	{{ message|safe }}	
-  </div>
-{% endfor %}
-{% endif %}
-</div>
+	{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{message.tags}}" role="alert">
+		{{ message|safe }}	
+	  </div>
+	{% endfor %}
+	{% endif %}
+	</div>
+
+	<!-- Begin List Posts
+	================================================== -->
+	<section class="recent-posts">
         {% block content %}
         {% endblock %}
+	</section>
+	<!-- End List Posts
+	================================================== -->
 
 	<!-- Begin Footer
 	================================================== -->
-<div class="container">
 	<div class="footer">
 		<p class="pull-left">
-			 Copyright &copy; 2018 Żyj świadomie
+			 Copyright &copy; 2017 Żyj świadomie
 		</p>
 		<p class="pull-right">
 			 Mediumish Theme by <a target="_blank" href="https://www.wowthemes.net">WowThemes.net</a>
@@ -126,18 +120,18 @@
 		<div class="clearfix">
 		</div>
 	</div>
-</div>
 	<!-- End Footer
 	================================================== -->
 
+</div>
 <!-- /.container -->
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
-<script src="{% static "static/js/jquery.min.js"  %}"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="static/js/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="{% static "static/js/bootstrap.min.js" %}"></script>
-<script src="{% static "static/js/ie10-viewport-bug-workaround.js" %}"></script>
-<script src="{% static "static/js/jquery.min.js" %}"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
