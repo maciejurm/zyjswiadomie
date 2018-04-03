@@ -27,6 +27,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('wydarzenia/', include('events.urls', namespace='event')),
     path('strona/', include('pages.urls')),
+    path('filmy/', include('videos.urls', namespace='video')),
 ]
 
 if settings.DEBUG:
