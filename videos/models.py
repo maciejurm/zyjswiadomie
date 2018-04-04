@@ -11,6 +11,7 @@ class Video(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, max_length= 250)
     created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Film'
@@ -26,7 +27,7 @@ class Video(models.Model):
         slug = slugify(self.title)
         unique_slug = slug
         num = 1
-        while Event.objects.filter(slug=unique_slug).exists():
+        while Video.objects.filter(slug=unique_slug).exists():
             unique_slug = '{}-{}'.format(slug, num)
             num += 1
         return unique_slug

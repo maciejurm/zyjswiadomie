@@ -5,7 +5,7 @@ from .forms import VideoForm
 from django.contrib import messages
 
 def video_list(request):
-    videos = Video.objects.all()
+    videos = Video.objects.filter(active=True)
     return render(request, 'video/list.html',
                  {'videos': videos})
 
