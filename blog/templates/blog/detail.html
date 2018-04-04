@@ -7,6 +7,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="800" />
     <meta property=”og:description” content="{{ post.body|truncatewords:30 }}" />
+    <meta property=”og:url” content="http://zyjswiadomie.eu{{post.get_absolute_url}}" />
 {% endblock %}
 {% block title %} {{ post.title }} {% endblock %}
 
@@ -78,13 +79,13 @@
                 <!-- Begin Featured Image -->
                 <img class="featured-image img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
                 <!-- End Featured Image -->
-    
+                
                 <!-- Begin Post Content -->
                 <div class="article-post">
                    <p> {{ post.body|safe }} </p>
                 </div>
                 <!-- End Post Content -->
-    
+
                 <!-- Begin Tags -->
             <!--
                 <div class="after-post-tags">
@@ -104,6 +105,10 @@
             <!-- End Post -->
     
         </div>
+    </div>
+    <div class="fb-share-button" 
+    data-href="http://zyjswiadomie.eu{{post.get_absolute_url}}" 
+    data-layout="button_count">
     </div>
     <!-- End Article
     ================================================== -->

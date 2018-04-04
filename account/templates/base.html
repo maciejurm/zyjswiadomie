@@ -59,6 +59,9 @@
 				<a class="nav-link" href="{% url 'event:event_list' %}">Wydarzenia</a>
 			</li>
 			<li class="nav-item">
+				<a class="nav-link" href="{% url 'video:video_list' %}">Filmy</a>
+			</li>
+			<li class="nav-item">
 				<a class="nav-link" href="{% url 'patron' %}">Zostań patronem</a>
 			</li>
 			<li class="nav-item">
@@ -85,7 +88,7 @@
 					<div class="dropdown-menu" aria-labelledby="userMenu">
 						<a class="dropdown-item" href="{% url 'blog:nowy' %}">Dodaj post</a>
 						<a class="dropdown-item" href="{% url 'event:event_add' %}">Dodaj wydarzenie</a>
-						<a class="dropdown-item" href="{% url 'edycja' %}">Ustawienia</a>
+						<a class="dropdown-item" href="{% url 'edycja' %}">Edycja profilu</a>
 						<a class="dropdown-item" href="{% url 'password_change' %}">Zmiana hasła</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="{% url 'logout' %}">Wyloguj</a>
@@ -146,6 +149,15 @@
 			 }
 			})(window, document);
 	</script>
+	  <!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	  <script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));</script>
 <script src="{% static "static/js/jquery.min.js"  %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="{% static "static/js/bootstrap.min.js" %}"></script>

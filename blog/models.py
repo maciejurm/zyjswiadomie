@@ -7,7 +7,7 @@ from django.utils.text import slugify
 
 class Post(models.Model):
     title = models.CharField(max_length = 250, verbose_name='Tytuł')
-    slug = models.SlugField(unique = True)
+    slug = models.SlugField(unique = True, max_length= 250)
     body = models.TextField(verbose_name='Treść', help_text='Aby inaczej sformatować tekst, zaznacz fragment tekstu, który chcesz zmienić i kliknij wybraną ikonę.')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)

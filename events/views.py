@@ -3,6 +3,7 @@ from .models import Event
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EventForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def event_list(request):
     events = Event.objects.filter(active=True)
@@ -24,6 +25,7 @@ def event_detail(request, slug):
                  'detail.html',
                  {'event': event})
 
+@login_required
 def nowe_wydarzenie(request):
     if request.method == "POST":
         form = EventForm(request.POST, request.FILES)

@@ -7,6 +7,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="800" />
     <meta property=”og:description” content="{{ event.body|truncatewords:30 }}" />
+    <meta property=”og:url” content="http://zyjswiadomie.eu{{event.get_absolute_url}}" />
 {% endblock %}
 {% block title %} {{ event.title }} {% endblock %}
 
@@ -62,7 +63,11 @@
                 </div>
     
                 <!-- Begin Featured Image -->
+                {% if event.video_url %}
+                <a href="{{event.video_url}}" class="embedly-card">Embedly</a>
+                {% else %}
                 <img class="featured-image img-fluid" src="{{ event.image.url }}" alt="{{ event.title }}">
+                {% endif %}
                 <!-- End Featured Image -->
     
                 <!-- Begin Post Content -->
@@ -96,7 +101,10 @@
     
             </div>
             <!-- End Post -->
-    
+            <div class="fb-share-button" 
+            data-href="http://zyjswiadomie.eu{{post.get_absolute_url}}" 
+            data-layout="button_count">
+            </div>
         </div>
     </div>
     <!-- End Article

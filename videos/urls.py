@@ -8,4 +8,5 @@ app_name = 'film'
 urlpatterns = [
     path('wszystkie/', views.video_list, name='video_list'),
     path('<slug>/', views.video_detail, name='video_detail'),
+    path('video/dodaj/', views.video_add, name='video_add'),
 ]

@@ -4,7 +4,7 @@ from .forms import CommentForm, PostForm
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from meta.models import ModelMeta
-
+from django.contrib.auth.decorators import login_required
 
 
 def post_list(request):
@@ -39,6 +39,7 @@ def tresc_postu(request, slug):
                  'comments': comments,
                  'comment_form': comment_form})
 
+@login_required
 def nowy_post(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
