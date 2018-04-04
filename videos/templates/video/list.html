@@ -8,11 +8,9 @@
         <div class="mainheading">
             <h1 class="sitetitle">Filmy</h1>
             <p>Nagrywasz ciekawe filmy związane ze świadomym życiem, znasz jakieś filmy, które Cię zainspirowały? Podziel się nimi. :)</p>
-            {% if request.user.is_authenticated %}
             <a href="{% url 'video:video_add' %}">    
             <button type="button" class="btn btn-sm btn-outline-success">Dodaj film</button>
             </a>
-            {% endif %}
         </div>
     <!-- End Site Title
     ================================================== -->

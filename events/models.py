@@ -6,15 +6,15 @@ from django.urls import reverse
 class Event(models.Model):
     title = models.CharField(max_length = 250, verbose_name = 'Tytuł')
     image = models.ImageField(upload_to = 'events', verbose_name='Miniatura wydarzenia')
-    video_url = models.URLField(blank=True,verbose_name='Link do wideo', help_text='Jeśli masz zapowiedź wydarzenia w formie wideo, możesz tutaj wstawić. Jeśli prowadzisz live na facebooku, wstaw do niego link, a osoby zainteresowane będą mogły kliknąć "Otrzymaj powiadomienie" bezpośrednio z Żyj świadomie.')
+    video_url = models.URLField(verbose_name='Link do wideo', help_text='Jeśli masz zapowiedź wydarzenia w formie wideo, możesz tutaj wstawić. Jeśli prowadzisz live na facebooku, wstaw do niego link, a osoby zainteresowane będą mogły kliknąć "Otrzymaj powiadomienie" bezpośrednio z Żyj świadomie.', blank=True, null=True)
     button = models.CharField(max_length = 100, default = 'Więcej informacji', verbose_name = 'Przycisk', help_text = 'Możesz zmienić nazwę przycisku wpisując na przykład: "Bilety"')
     button_url = models.URLField(default = 'http://przykladowylink.pl', verbose_name='Adres url przycisku', help_text = 'Przekierowanie przycisku na podany adres, tutaj wpisz adres na który chcesz skierować ludzi zainteresowanych wydarzeniem.')
     body = models.TextField(verbose_name='Treść')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, max_length= 250)
     day = models.DateField('Dzień wydarzenia', help_text = 'Dzień wydarzenia')
-    start_time = models.TimeField('Godzina rozpoczęcia', help_text = 'Godzina rozpoczęcia', blank=True)
-    end_time = models.TimeField('Godzina zakończenia', blank=True)
+    start_time = models.TimeField('Godzina rozpoczęcia', help_text = 'Godzina rozpoczęcia', blank=True, null=True)
+    end_time = models.TimeField('Godzina zakończenia', blank=True, null=True)
     active = models.BooleanField(default = False)
 
     class Meta:
