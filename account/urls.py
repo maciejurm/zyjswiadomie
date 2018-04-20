@@ -20,6 +20,7 @@ urlpatterns = [
     path('edycja-profilu/', views.edit, name='edycja'),
     # Profil użytkownika
     path('users/', views.user_list, name='user_list'),
+    path('profil/follow/', views.user_follow, name='user_follow'),
     path('profil/<username>/',
         views.user_detail,
         name='user_detail'),

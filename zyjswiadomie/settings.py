@@ -47,7 +47,27 @@ INSTALLED_APPS = [
     'events',
     'pages',
     'videos',
+    'stream_django',
+    'embed_video',
+    'webinars',
+    'access',
+    'getpaid',
+    'categories',
 ]
+
+
+# Get paid
+GETPAID_BACKENDS = ('getpaid.backends.dummy',
+                    'getpaid.backends.payu', )
+
+GETPAID_BACKENDS_SETTINGS = {
+    # Please provide your settings for backends
+    'getpaid.backends.payu' : {
+
+        },
+}
+
+GETPAID_ORDER_MODEL = 'access.Order'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +79,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STREAM_API_KEY = 'jv9mc55xxq23'
+STREAM_API_SECRET = '24nvphw6942jh76jpr5t8ua7fhzpzut75z6x3qfj8rzbrwfw6uhq954a5cp8durz'
+
 ROOT_URLCONF = 'zyjswiadomie.urls'
+
 
 TEMPLATES = [
     {

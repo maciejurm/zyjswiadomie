@@ -19,7 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
+app_name='getpaid'
 app_name = 'blog'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
@@ -28,6 +30,7 @@ urlpatterns = [
     path('wydarzenia/', include('events.urls', namespace='event')),
     path('strona/', include('pages.urls')),
     path('filmy/', include('videos.urls', namespace='video')),
+    path('getpaid/', include('getpaid.urls', namespace='getpaid')),
 ]
 
 if settings.DEBUG:

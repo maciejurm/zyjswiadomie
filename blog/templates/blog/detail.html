@@ -1,5 +1,6 @@
 {% extends "base.html"  %}
 {% load thumbnail %}
+{% load static %}
 {% block og_tags %}
     <meta property="og:type"   content="article" /> 
     <meta property="og:title"  content="{{ post.title }}" /> 
@@ -64,7 +65,7 @@
                                 {% endthumbnail %}
                         </div>
                         <div class="col-md-10">
-                            <a class="link-dark" href="author.html"> {{ post.author }}</a><!-- <a href="#" class="btn follow">Follow</a> /-->
+                            <a class="link-dark" href="#"> {{ post.author }}</a><!-- <a href="#" class="btn follow">Follow</a> /-->
                             <span class="author-description">{{ post.author.profile.biography }}</span>
                             
                             <span class="post-date"> {{ post.publish }} </span>
@@ -100,16 +101,16 @@
                 </div>
             /-->    
                 <!-- End Tags -->
-    
+<strong>Udostępnij:</strong>
+<div class="sharethis-inline-share-buttons"></div>
             </div>
+            
             <!-- End Post -->
     
         </div>
     </div>
-    <div class="fb-share-button" 
-    data-href="http://zyjswiadomie.eu{{post.get_absolute_url}}" 
-    data-layout="button_count">
-    </div>
+
+
     <!-- End Article
     ================================================== -->
     
@@ -117,28 +118,7 @@
     
     <!-- Begin Related
     ================================================== -->
-    <div class="container">
-        <div class="d-flex flex-row">
-            <div class="p-2">
-                <div class="jumbotron bg-primary text-white">
-                    <h3>Zostań patronem</h3>
-                    <p class="lead">Lubisz projekt Żyj świadomie? Możesz pomóc go rozwinąć i stworzyć razem coś fajnego! :)</p>
-                    <p class="lead">
-                    <a href="{% url 'patron' %}"><button type="button" class="btn btn-light">Więcej informacji</button></a>
-                    </p>
-                </div>
-            </div>
-            <div class="p-2">
-                    <div class="jumbotron bg-success text-white">
-                        <h3>Wydarzenia</h3>
-                        <p class="lead">Szukasz ciekawych wydarzeń? Zobacz jakie się pojawiły!:)</p>
-                        <p class="lead">
-                        <a href="{% url 'event:event_list' %}"><button type="button" class="btn btn-light">Wydarzenia</button></a>
-                        </p>
-                    </div>
-            </div>
-        </div>
-    </div>
+
     <div class="graybg">
     
     </div>

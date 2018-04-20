@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post
-from .forms import CommentForm, PostForm
+from .forms import PostForm
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from meta.models import ModelMeta
 from django.contrib.auth.decorators import login_required
 
 
@@ -23,21 +22,9 @@ def post_list(request):
 
 def tresc_postu(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    comments = post.comments.filter(active = True)
-    comment_form = CommentForm(data = request.POST)
-    if request.method == 'POST':
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.name = request.user
-            new_comment.post = post
-            new_comment.save()
-    else:
-        comment_form = CommentForm()
     return render(request, 
                  'blog/detail.html',
-                 {'post': post,
-                 'comments': comments,
-                 'comment_form': comment_form})
+                 {'post': post})
 
 @login_required
 def nowy_post(request):
