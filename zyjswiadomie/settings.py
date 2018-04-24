@@ -52,9 +52,13 @@ INSTALLED_APPS = [
     'webinars',
     'access',
     'getpaid',
-    'categories',
+    'taggit',
+    'taggit_selectize',
 ]
 
+#Tagi
+TAGGIT_TAGS_FROM_STRING = 'taggit_selectize.utils.parse_tags'
+TAGGIT_STRING_FROM_TAGS = 'taggit_selectize.utils.join_tags'
 
 # Get paid
 GETPAID_BACKENDS = ('getpaid.backends.dummy',

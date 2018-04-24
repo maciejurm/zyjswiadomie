@@ -16,6 +16,7 @@ class Video(models.Model):
     class Meta:
         verbose_name = 'Film'
         verbose_name_plural = 'Filmy'
+        ordering = ['-created_at']
     
     def get_absolute_url(self):
         return reverse('video:video_detail',

@@ -16,10 +16,12 @@ class Event(models.Model):
     start_time = models.TimeField('Godzina rozpoczęcia', help_text = 'Godzina rozpoczęcia', blank=True, null=True)
     end_time = models.TimeField('Godzina zakończenia', blank=True, null=True)
     active = models.BooleanField(default = False)
+    published = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Wydarzenie'
         verbose_name_plural = 'Wydarzenia'
+        ordering = ['-published']
     
     def get_absolute_url(self):
         return reverse('event:event_detail',

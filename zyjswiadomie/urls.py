@@ -23,6 +23,7 @@ app_name='getpaid'
 app_name = 'blog'
 
 urlpatterns = [
+    path('taggit/', include('taggit_selectize.urls')),
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
     path('konto/', include('account.urls')),

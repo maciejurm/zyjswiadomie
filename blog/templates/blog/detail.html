@@ -80,27 +80,24 @@
                 <!-- Begin Featured Image -->
                 <img class="featured-image img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
                 <!-- End Featured Image -->
-                
+
                 <!-- Begin Post Content -->
                 <div class="article-post">
                    <p> {{ post.body|safe }} </p>
                 </div>
                 <!-- End Post Content -->
-
-                <!-- Begin Tags -->
-            <!--
-                <div class="after-post-tags">
-                    <ul class="tags">
-                    {% for tag in post.tags.all %}
-                        
-                        <li><a href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a></li>
-                    {% empty %}
-                        <li class="list-inline-item">Ten post nie posiada żadnych tagów.</li>
-                    {% endfor %}
-                    </ul>
-                </div>
-            /-->    
-                <!-- End Tags -->
+                                <!-- Begin Tags -->     
+                                <div class="after-post-tags">
+                                    <ul class="tags">
+                                    {% for tag in post.tags.all %}
+                                        
+                                        <li><a href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a></li>
+                                    {% empty %}
+                                        <li class="list-inline-item">Ten post nie posiada żadnych tagów.</li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>  
+                                <!-- End Tags -->
 <strong>Udostępnij:</strong>
 <div class="sharethis-inline-share-buttons"></div>
             </div>
@@ -110,7 +107,6 @@
         </div>
     </div>
 
-
     <!-- End Article
     ================================================== -->
     
@@ -119,72 +115,50 @@
     <!-- Begin Related
     ================================================== -->
 
-    <div class="graybg">
+<!-- Begin Related
+================================================== -->
+<div class="graybg">
+        <div class="container">
+            <div class="row listrecent listrelated">
     
+                <!-- begin post -->
+                <div class="col-md-4">
+                    {% for post in similar_posts %}
+                    <div class="card">
+                        <a href="{{ post.get_absolute_url }}">
+                        {% thumbnail post.image "400" as im %}
+                        <img class="img-fluid img-thumb" src="{{ im.url }}" alt="">
+                        {% endthumbnail %}
+                        </a>
+                        <div class="card-block">
+                            <h2 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                            <div class="metafooter">
+                                <div class="wrapfooter">
+                                    <span class="meta-footer-thumb">
+                                    <a href="#">
+                                        {% thumbnail post.author.profile.photo "150x150" as im %}
+                                        <img class="author-thumb" src="{{ im.url }}" alt="{{post.author}}"></a>
+                                        {% endthumbnail %}
+                                    </span>
+                                    <span class="author-meta">
+                                    <span class="post-name"><a href="#">{{ post.author }}</a></span><br/>
+                                    <span class="post-date">{{post.created_at}}</span><span class="dot"></span><span class="post-read"></span>
+                                    </span>
+                                    <span class="post-read-more"><a href="{{ post.get_absolute_url }}" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>        <!-- end post -->
     </div>
-    <!-- End Related Posts
+        <!-- End Related Posts
     ================================================== -->
 
 
     <!--================ Komentarze ==================-->
-    <div class="container">
-        <div class="row">
-            <div class="comments col-md-9" id="comments">
-                <h3 class="mb-2">Komentarze</h3>
-                <!-- comment -->
-                {% for comment in comments %}
-                <div class="comment mb-2 row">
-                    <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
-                        <a href="">
-                            {% thumbnail comment.name.profile.photo "150x150" as im %}  
-                            <img class="mx-auto rounded-circle" width="50" height="50" src="{{ im.url }}" alt="{{ comment.name }}">
-                            {% endthumbnail %}
-                        </a>
-                    </div>
-                    <div class="comment-content col-md-11 col-sm-10">
-                        <h6 class="small comment-meta"><a href="#">{{ comment.name }}</a> {{ comment.created }}</h6>
-                        <div class="comment-body">
-                            <p>
-                                {{ comment.body }}
-                            </p>
-                            {% empty %}
-                            <p>Nie ma jeszcze żadnych komentarzy.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /comment -->
-                {% endfor %}
-            <div class="container">
-                <div class="row pt-2">
-                    <div class="col-12">
-                    {% if request.user.is_authenticated %}
-                        <form action="." method="post" enctype="multipart/form-data" class="p-5" style="margin: auto;">
-                            {% load widget_tweaks %}
-                            {% csrf_token %}
-          
-                            {% for hidden_field in comment_form.hidden_fields %}
-                              {{ hidden_field }}
-                            {% endfor %}
-                          
-                            {% for field in comment_form.visible_fields %}
-                              <div class="form-group">
-                                {{ field.label_tag }}
-                                {% render_field field class="form-control" %}
-                                {% if field.help_text %}
-                                  <small class="form-text text-muted">{{ field.help_text }}</small>
-                                {% endif %}
-                              </div>
-                            {% endfor %}
-                            <button type="submit" class="btn btn-primary">Dodaj kommentarz</button>
-                          </form>
-                        {% else %}
-                    Aby dodać komentarz musisz się <a href="{% url 'login' %}">zalogować</a> lub <a href="{% url 'registration' %}">zarejestrować.</a>
-                    {% endif %}
-                    </div>
-                </div>
-            </div>
-    
-            </div>
-        </div>
-    </div>
+
 {% endblock %}
